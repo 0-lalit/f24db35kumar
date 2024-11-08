@@ -1,0 +1,84 @@
+extends layout
+
+block content
+  h1 Search Results for Electronics
+
+  // Display Hardcoded Results in a Grid
+  .container-fluid
+    .row
+      // Samsung Galaxy S23
+      .col-sm-4
+        .card
+          .card-body
+            h5.card-title Samsung Galaxy S23
+            p.card-text Description: Latest smartphone with cutting-edge features
+            p.card-text Price: $999
+            button(class="btn btn-primary" onclick="buy(0)") Buy Now
+
+      // Apple iPhone 15
+      .col-sm-4
+        .card
+          .card-body
+            h5.card-title Apple iPhone 15
+            p.card-text Description: High-end smartphone with a 6.1-inch OLED display
+            p.card-text Price: $1099
+            button(class="btn btn-primary" onclick="buy(1)") Buy Now
+
+      // Sony WH-1000XM5 Headphones
+      .col-sm-4
+        .card
+          .card-body
+            h5.card-title Sony WH-1000XM5 Headphones
+            p.card-text Description: Noise-canceling headphones with excellent sound quality
+            p.card-text Price: $350
+            button(class="btn btn-primary" onclick="buy(2)") Buy Now
+
+  script.
+    // JavaScript for the buy function
+    function buy(index) {
+      const electronics = [
+        'Samsung Galaxy S23',
+        'Apple iPhone 15',
+        'Sony WH-1000XM5 Headphones'
+      ];
+      alert(`You purchased ${electronics[index]}`);
+    }
+
+  // Style the page with Bootstrap (already included) and some custom CSS
+  style.
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    section {
+      margin-top: 30px;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .card-text {
+      font-size: 1.2em;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }

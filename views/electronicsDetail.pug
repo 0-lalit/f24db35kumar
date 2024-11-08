@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 #{title}
+  
+  .container
+    .row
+      .col-sm-4
+        h3 #{item.brand}
+        p Model: #{item.model}
+        p Price: $#{item.price}
