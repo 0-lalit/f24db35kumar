@@ -1,28 +1,20 @@
-var express = require('express');
-var router = express.Router();
-
-// Require controller modules.
-var api_controller = require('../controllers/api');
-var electronics_controller = require('../controllers/electronics');
-
+const express = require('express');
+const router = express.Router();
+ 
+// Require controller modules
+const api_controller = require('../controllers/api');
+const electronics_controller = require('../controllers/electronics');  // Changed to electronicsController
+ 
 /// API ROUTE ///
-// GET resources base
-// router.get('/', api_controller.api);
-
-/// ELECTRONICS ROUTES ///
-// POST request for creating an Electronics item
-router.post('/', electronics_controller.electronics_create_post);
-
-// DELETE request to delete an Electronics item
-router.delete('/:id', electronics_controller.electronics_delete);
-
-// PUT request to update an Electronics item
-router.put('/:id', electronics_controller.electronics_update_put);
-
-// GET request for one Electronics item
-router.get('/:id', electronics_controller.electronics_detail);
-
-// GET request for list of all Electronics items
-router.get('/', electronics_controller.electronics_list);
-
+ 
+// GET request for API base
+router.get('/', api_controller.api);
+ 
+// Electronics Routes
+router.get('/electronics', electronics_controller.electronics_list); // GET request for list of all Electronics
+router.post('/electronics', electronics_controller.electronics_create_post); // POST request for creating an Electronics item
+router.get('/electronics/:id', electronics_controller.electronics_detail); // GET request for a specific Electronics item
+router.put('/electronics/:id', electronics_controller.electronics_update_put); // PUT request to update an Electronics item
+router.delete('/electronics/:id', electronics_controller.electronics_delete); // DELETE request to delete an Electronics item
+ 
 module.exports = router;
