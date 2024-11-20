@@ -21,7 +21,7 @@ var app = express();
 const connectionString = process.env.MONGO_CON;
 console.log("MongoDB URI:", connectionString);
 
-mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(connectionString);
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

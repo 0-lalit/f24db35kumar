@@ -75,13 +75,9 @@ exports.electronics_update_put = async function(req, res) {
 // Delete an electronics item by ID
 exports.electronics_delete = async function(req, res) {
     try {
-        // Find the electronics item by ID and delete it
-        const deletedElectronics = await Electronics.findByIdAndDelete(req.params.id);
-        if (!deletedElectronics) {
-            return res.status(404).send('Electronics item not found');
-        }
-        // Send a success message for deletion
-        res.json({ message: 'Electronics item deleted successfully' });
+        result = await Electronics.findByIdAndDelete(req.params.id);
+        console.log("Removed " + result)
+        res.send(result)
     } catch (err) {
         // If an error occurs, return status 500 with the error message
         res.status(500).send(`{"error": ${err}}`);
