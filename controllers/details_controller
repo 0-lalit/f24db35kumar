@@ -35,3 +35,15 @@ exports.electronics_view_one_Page = async function (req, res) {
     }
   };
  
+  exports.electronics_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Electronics.findById(req.query.id)
+    res.render('electronicsdelete', { title: 'Electronics Delete', toShow:
+   result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };

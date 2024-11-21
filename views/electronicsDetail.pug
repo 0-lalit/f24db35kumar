@@ -7,16 +7,58 @@ block content
   - let category = toShow.category
   - let price = toShow.price
  
-  div
-  div.row
-    div(class='electronicsAttr mr-3') Electronic ID is:
-    div #{electronicId}
-  div.row
-    div(class='electronicsAttr mr-3') Name is:
-    div #{name}
-  div.row
-    div(class='electronicsAttr mr-3') Category is:
-    div #{category}
-  div.row
-    div(class='electronicsAttr mr-3') Price is:
-    div #{price} 
+  div.container
+    div.row.mb-4
+      div.col-md-12.text-center
+ 
+    div.row.mb-3
+      div.col-md-4
+        p.electronicsLabel <strong>Electronic ID:</strong>
+      div.col-md-8
+        p.electronicsValue #{electronicId}
+ 
+    div.row.mb-3
+      div.col-md-4
+        p.electronicsLabel <strong>Name:</strong>
+      div.col-md-8
+        p.electronicsValue #{name}
+ 
+    div.row.mb-3
+      div.col-md-4
+        p.electronicsLabel <strong>Category:</strong>
+      div.col-md-8
+        p.electronicsValue #{category}
+ 
+    div.row.mb-3
+      div.col-md-4
+        p.electronicsLabel <strong>Price:</strong>
+      div.col-md-8
+        p.electronicsValue $#{price}
+
+  div.row.mt-4
+      div.col-md-12
+        a.btn.btn-primary(href="/resource/electronics") Back to Collection 
+  style.
+    .electronicsLabel {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+    }
+ 
+    .electronicsValue {
+      font-size: 1.2rem;
+      color: #555;
+    }
+ 
+    .container {
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+ 
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
