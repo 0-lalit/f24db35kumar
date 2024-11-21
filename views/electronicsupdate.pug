@@ -1,0 +1,48 @@
+extends layout
+ 
+block content
+  h1= title
+  - let electronicsId = toShow._id
+  - let name = toShow.name
+  - let category = toShow.category
+  - let price = toShow.price
+ 
+  div.row(class='mb-4')
+    div.col-md-12
+      p.m-0
+        | ID is:
+        span.font-weight-bold #{electronicsId}
+ 
+  - let actionid = "/resource/electronics/" + electronicsId
+  form(id='ElectronicsForm', action= actionid, method="PUT")
+    div.form-group
+      label.electronicsAttr(for='name') Name
+      input#name.form-control(type='text', name='name', value=name)
+ 
+    div.form-group
+      label.electronicsAttr(for='category') Category
+      input#category.form-control(type='text', name='category', value=category)
+ 
+    div.form-group
+      label.electronicsAttr(for='price') Price
+      input#price.form-control(type='number', name='price', value=price, required)
+ 
+    // Submit button
+    div.form-group
+      input(type="submit", class="btn btn-primary")
+ 
+  script.
+    document.forms['ElectronicsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Update succeeded");
+        console.log("Server response:", body);
+      }).catch((error) => {
+        alert("Update failed: " + error);
+      });
+    });

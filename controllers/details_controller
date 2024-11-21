@@ -23,3 +23,15 @@ exports.electronics_view_one_Page = async function (req, res) {
       res.send(`{'error': '${err}'}`);
     }
   };
+
+  exports.electronics_update_Page = async function(req, res) {
+    console.log("Update view for item " + req.query.id);
+    try {
+      let result = await Electronics.findById(req.query.id);
+      res.render('electronicsupdate', { title: 'Electronics Update', toShow: result });
+    } catch (err) {
+      res.status(500);
+      res.send(`{'error': '${err}'}`);
+    }
+  };
+ 
