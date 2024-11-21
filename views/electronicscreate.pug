@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+  form(id='ElectronicsForm', action="/resource/electronics", method="POST")
+    div.form-group
+      label.electronicsAttr(for='name') Name
+      input#name(type='text', name='name', class='form-control', required)
+    div.form-group
+      label.electronicsAttr(for='category') Category
+      input#category(type='text', name='category', class='form-control', required)
+    div.form-group
+      label.electronicsAttr(for='price') Price
+      input#price(type='number', name='price', class='form-control', required)
+    button(type='submit', class='btn btn-primary mt-3') Create Electronics
+
+  script.
+    document.forms['ElectronicsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      alert("Submitting form...");
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        if (!resp.ok) throw new Error(resp.statusText);
+        return resp.json();
+      }).then((body) => {
+        alert("Save succeeded");
+        console.log("Server response:", body);
+      }).catch((error) => {
+        alert("Save failed: " + error);
+      });
+    });

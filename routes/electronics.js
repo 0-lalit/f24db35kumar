@@ -10,5 +10,6 @@ router.get('/', electronics_controller.electronics_list);
 router.post('/electronics', electronics_controller.electronics_create_post);
 
 router.get('/detail', details_controller.electronics_view_one_Page);
+router.get('/create', details_controller.electronics_create_Page);
 
 module.exports = router;

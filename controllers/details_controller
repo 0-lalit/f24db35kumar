@@ -14,3 +14,12 @@ exports.electronics_view_one_Page = async function (req, res) {
     }
   };
  
+  exports.electronics_create_Page = function (req, res) {
+    console.log("Create view");
+    try {
+      res.render('electronicscreate', { title: 'Create Electronics' });
+    } catch (err) {
+      res.status(500);
+      res.send(`{'error': '${err}'}`);
+    }
+  };
