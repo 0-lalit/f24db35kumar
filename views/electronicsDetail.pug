@@ -1,11 +1,22 @@
 extends layout
-
+ 
 block content
-  h1 #{title}
-  
-  .container
-    .row
-      .col-sm-4
-        h3 #{item.brand}
-        p Model: #{item.model}
-        p Price: $#{item.price}
+  h1= title
+  - let electronicId = toShow._id
+  - let name = toShow.name
+  - let category = toShow.category
+  - let price = toShow.price
+ 
+  div
+  div.row
+    div(class='electronicsAttr mr-3') Electronic ID is:
+    div #{electronicId}
+  div.row
+    div(class='electronicsAttr mr-3') Name is:
+    div #{name}
+  div.row
+    div(class='electronicsAttr mr-3') Category is:
+    div #{category}
+  div.row
+    div(class='electronicsAttr mr-3') Price is:
+    div #{price} 
