@@ -1,18 +1,27 @@
 extends layout
 
 block content
-  h1= title
-  p Hello you #{title}
-   button(type="button", class="btn btn-success") Press me
-  button(onclick="boost()") Sample Button
+  h1 Welcome to Electronics App Server!
+  p Hello you, here is the Electronics App for your Purchase.
+  button(type="button", class="btn btn-success", onclick="boost()") Sample Button
   div#boost add in extra
   a(href=`/electronics`) Search for electronics 
   script.
     let value = 0;
     let amt = 3;
- 
     function boost() {
-        amt += 1;
-        value += amt;
-        document.getElementById("boost").innerText = `Boosted ${value} by ${amt}`;
+      amt += 1;
+      value += amt;
+      document.getElementById("boost").innerText = `Boosted ${value} by ${amt}.`;
     }
+ 
+  if (!user)
+    br
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/electronics") Take me to relic
+    br
+    a(href="/logout") Logout
