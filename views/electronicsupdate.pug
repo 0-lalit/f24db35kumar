@@ -1,48 +1,50 @@
 extends layout
- 
+
 block content
   h1= title
-  - let electronicsId = toShow._id
+  - let electronicId = toShow._id
   - let name = toShow.name
   - let category = toShow.category
   - let price = toShow.price
- 
+
   div.row(class='mb-4')
     div.col-md-12
       p.m-0
         | ID is:
-        span.font-weight-bold #{electronicsId}
- 
-  - let actionid = "/resource/electronics/" + electronicsId
-  form(id='ElectronicsForm', action= actionid, method="PUT")
+        span.font-weight-bold #{electronicId}
+
+  - let actionid = "/resource/electronics/" + electronicId
+  form(id='ElectronicsForm', action=actionid, method="PUT")
     div.form-group
-      label.electronicsAttr(for='name') Name
-      input#name.form-control(type='text', name='name', value=name)
- 
+      label.electronicsAttr(for='name') Electronic Name
+      input#name.form-control(type='text', name='name', value=name, required)
+
     div.form-group
       label.electronicsAttr(for='category') Category
-      input#category.form-control(type='text', name='category', value=category)
- 
+      input#category.form-control(type='text', name='category', value=category, required)
+
     div.form-group
       label.electronicsAttr(for='price') Price
       input#price.form-control(type='number', name='price', value=price, required)
- 
+
     // Submit button
     div.form-group
-      input(type="submit", class="btn btn-primary")
- 
+      input(type="submit", class="btn btn-primary" value="Update Electronics")
+
   script.
     document.forms['ElectronicsForm'].addEventListener('submit', (event) => {
       event.preventDefault();
       fetch(event.target.action, {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(new FormData(event.target))
       }).then((resp) => {
+        if (!resp.ok) return resp.json().then((body) => { throw new Error(body.message); });
         return resp.json();
       }).then((body) => {
         alert("Update succeeded");
         console.log("Server response:", body);
       }).catch((error) => {
-        alert("Update failed: " + error);
+        alert("Update failed: Price must be valid and within the 300 and 50000 range. " + error.message);
       });
     });

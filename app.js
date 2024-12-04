@@ -58,7 +58,7 @@ async function recreateDB() {
 
   let electronics1 = new Electronics({ name: "Smartphone", category: "Mobile", price: 699 });
   let electronics2 = new Electronics({ name: "Laptop", category: "Computing", price: 1200 });
-  let electronics3 = new Electronics({ name: "Smartwatch", category: "Wearable", price: 199 });
+  let electronics3 = new Electronics({ name: "Smartwatch", category: "Wearable", price: 400 });
 
   await electronics1.save();
   await electronics2.save();

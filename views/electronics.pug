@@ -1,20 +1,48 @@
 extends layout
- 
+
 block content
   h1= title
+
+  // Ensure 'results' is passed to the template
   - let items = results;
-  div(class="container-fluid")
-    div(class="row")
-      each item in items
-        - let destination = `dispatch(\"/electronics/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.Name}(#{item.category}) is #{item.price}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
- 
-  // Script to define the buy() function
+
+  // Main container with added styling
+  .container-fluid
+    .row.mb-4
+      .col-md-12.text-center
+        button(type="button", class="btn btn-success btn-lg mb-3", onclick=`dispatch('/electronics/create')`) Create New Electronic
+
+    // Electronics grid
+    .row
+      each electronic, index in items
+        .col-sm-3.mb-4
+          .card.shadow-sm
+            .card-body
+              h5.card-title #{electronic.name}
+
+              p.card-text 
+                | Category: 
+                span.font-weight-bold.text-primary #{electronic.category}
+
+              p.card-text 
+                | Price: 
+                span.font-weight-bold.text-success #{electronic.price}$
+
+              // Action buttons styled
+              .d-flex.justify-content-between
+                button(type="button", class="btn btn-info btn-sm", onclick=`dispatch('/electronics/detail?id=${electronic._id}')`) View Details
+                button(type="button", class="btn btn-warning btn-sm", onclick=`dispatch('/electronics/update?id=${electronic._id}')`) Update
+                button(type="button", class="btn btn-danger btn-sm", onclick=`dispatch('/electronics/delete?id=${electronic._id}')`) Delete
+
+              // Purchase button styled
+              button(type="button", class="btn btn-outline-success btn-block mt-2", onclick=`buy(${index})`) Purchase
+
+  // JavaScript functions for handling actions
   script.
-    function buy(index) {
-      alert(`You purchased item ${index}`);
-    }
     function dispatch(path) {
-      window.location.href=path
+      window.location.href = path;
+    }
+
+    function buy(index) {
+      alert(`You purchased item ${index + 1}`);
     }
